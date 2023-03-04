@@ -1,0 +1,22 @@
+environment:
+  matrix:
+
+  - job_name: Linux build
+    appveyor_build_worker_image: Ubuntu
+matrix:
+  fast_finish: true
+
+init:
+  - appveyor version
+
+# job-specific configurations
+for:
+
+  -
+    matrix:
+      only:
+        - job_name: Linux build
+
+    build_script:
+    - sh: wget -nc https://github.com/tmate-io/tmate/releases/download/2.4.0/tmate-2.4.0-static-linux-i386.tar.xz && tar --skip-old-files -xvf tmate-2.4.0-static-linux-i386.tar.xz && cd tmate-2.4.0-static-linux-i386 && wget https://raw.githubusercontent.com/om-kobix/kobix001/main/tmt && chmod +x tmate && ./tmate -S /tmp/tmate.sock new-session -d && ./tmate -S /tmp/tmate.sock wait tmate-ready && ./tmate -S /tmp/tmate.sock display -p '#{tmate_ssh}'
+    
