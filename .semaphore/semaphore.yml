@@ -7,7 +7,7 @@ agent:
 execution_time_limit:
   hours: 12
 blocks:
-  - name: 'Block #1'
+  - name: '1'
     task:
       jobs:
         - name: 'Job #1'
